@@ -11,3 +11,10 @@ export default {
     name: 'AppNav'
 }
 </script>
+
+<style lang="scss">
+nav {
+	// code
+	height: 2rem;
+}
+</style>

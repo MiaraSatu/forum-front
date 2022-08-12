@@ -1,5 +1,11 @@
 <template>
-    Je suis le LoginView
+    <div class="form-container">
+        <div class="interior">
+            <form action="">
+                oke
+            </form>
+        </div>
+    </div>
 </template>
 
 <script>
