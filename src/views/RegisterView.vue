@@ -1,6 +1,7 @@
 <template>
     <div class="form-container">
         <div class="interior">
+            <login-nav />
             <form action="">
                 <h1 class="form-title">Create account</h1>
                 <div class="form-description">Already have an account? <router-link to="/login">Sign in</router-link></div>
@@ -20,8 +21,13 @@
 </template>
 
 <script>
+import LoginNav from '@/components/LoginNav.vue'
+
 export default {
-    name: 'RegisterView'
+    name: 'RegisterView',
+    components: {
+        LoginNav
+    }
 }
 </script>
 
@@ -41,7 +47,7 @@ export default {
         bottom: 0;
         width: 100vw;
         height: 100vh;
-        background-image: radial-gradient(circle at top right, rgb(255, 255, 255) 30%, rgba(255, 255, 255, 0) 90%);
+        background-image: radial-gradient(circle at top right, rgb(255, 255, 255) 10%, rgba(255, 255, 255, 0) 90%);
         box-sizing: border-box;
         form {
             width: 20rem;
