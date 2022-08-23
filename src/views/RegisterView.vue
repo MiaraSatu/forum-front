@@ -2,17 +2,26 @@
     <div class="form-container">
         <div class="interior">
             <login-nav />
-            <form action="">
+            <form @submit.prevent="submitForm">
                 <h1 class="form-title">Create account</h1>
                 <div class="form-description">Already have an account? <router-link to="/login">Sign in</router-link></div>
-                <div class="group">
-                    <input type="text" placeholder="Full name">
+                <div class="group" :class="{'has-error':error.fullName}">
+                    <input type="text" placeholder="Full name" v-model="form.fullName">
+                    <div class="error" v-if="error.fullName">
+                        {{error.fullName}}
+                    </div>
                 </div>
-                <div class="group">
-                    <input type="email" placeholder="Email">
+                <div class="group" :class="{'has-error': error.email}">
+                    <input type="email" placeholder="Email" v-model="form.email">
+                    <div class="error" v-if="error.email">
+                        {{error.email}}
+                    </div>
                 </div>
-                <div class="group">
-                    <input type="password" placeholder="Your password">
+                <div class="group" :class="{'has-error': error.clearPassword}">
+                    <input type="password" placeholder="Your password" v-model="form.clearPassword">
+                    <div class="error" v-if="error.clearPassword">
+                        {{error.clearPassword}}
+                    </div>
                 </div>
                 <button type="submit">Sign up</button>
             </form>
@@ -25,8 +34,55 @@ import LoginNav from '@/components/LoginNav.vue'
 
 export default {
     name: 'RegisterView',
+    data() {
+        return {
+            form: {
+                fullName: '',
+                email: '',
+                clearPassword: ''
+            },
+            error: {}
+        }
+    },
     components: {
         LoginNav
+    },
+    methods: {
+        submitForm() {
+            let hasError = false
+            // checking fullName validation
+            if(this.form.fullName === '' || this.form.fullName.length < 3) {
+                this.error.fullName = 'could not be empty and length would be at least 3'
+                hasError = true
+            }
+            else
+                this.error.fullName = null
+            // checking email validation
+            if(this.form.email === '' || this.form.email.length < 5) {
+                this.error.email = 'invalid email address'
+                hasError = true
+            }
+            else
+                this.error.email = null
+            // checking clearPassword validation
+            if(this.form.clearPassword === '' || this.form.clearPassword.length < 5 ) {
+                this.error.clearPassword = 'could not be empty and length would be at least 5'
+                hasError = true
+            }
+            else
+                this.error.clearPassword = null
+
+            // checking all errors finally
+            if(hasError) {
+                this.$forceUpdate()
+                return 
+            }
+            this.error = {}
+            
+        }
+    },
+    updated() {
+        console.log('update called')
     }
 }
 </script>
@@ -82,6 +138,19 @@ export default {
                     &:focus {
                         border: rgb(30, 108, 226);
                         box-shadow: 0px 0px 5px rgb(30, 108, 226);
+                    }
+                }
+                &.has-error {
+                    input {
+                        border: 1px solid rgb(255, 68, 68, 0.7);
+                        &:focus {
+                            border: rgb(236, 54, 54);
+                            box-shadow: 0px 0px 5px rgb(236, 54, 54);
+                        }
+                    }
+                    .error {
+                        color: rgb(216, 35, 35);
+                        font-size: 0.9rem;
                     }
                 }
             }
