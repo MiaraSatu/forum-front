@@ -5,7 +5,7 @@
  * 
  * @returns {Object} error
  */
-const errorSpliter = (symfonyError, formAttributes = []) => {
+const splitError = (symfonyError, formAttributes = []) => {
     let formError = {}
     symfonyError.forEach((error) => {
         formAttributes.forEach((attribute) => {
@@ -17,4 +17,4 @@ const errorSpliter = (symfonyError, formAttributes = []) => {
     return formError
 }
 
-export {errorSpliter}
+export {splitError}

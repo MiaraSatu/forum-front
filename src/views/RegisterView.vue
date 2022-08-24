@@ -32,7 +32,7 @@
 <script>
 import axios from 'axios'
 import LoginNav from '@/components/LoginNav.vue'
-import {errorSpliter} from '@/services/app'
+import {splitError} from '@/services/app'
 
 export default {
     name: 'RegisterView',
@@ -60,7 +60,7 @@ export default {
             .catch(({response}) => {
                 let errors = response.data.errors;
                 if(errors) {
-                    this.error = errorSpliter(errors, ['fullName', 'email', 'clearPassword'])
+                    this.error = splitError(errors, ['fullName', 'email', 'clearPassword'])
                 }
             })
         }
