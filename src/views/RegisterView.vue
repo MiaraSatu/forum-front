@@ -2,7 +2,7 @@
     <div class="form-container">
         <div class="interior">
             <login-nav />
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="submitForm" novalidate>
                 <h1 class="form-title">Create account</h1>
                 <div class="form-description">Already have an account? <router-link to="/login">Sign in</router-link></div>
                 <div class="group" :class="{'has-error':error.fullName}">
@@ -30,7 +30,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 import LoginNav from '@/components/LoginNav.vue'
+import {errorSpliter} from '@/services/app'
 
 export default {
     name: 'RegisterView',
@@ -49,36 +51,18 @@ export default {
     },
     methods: {
         submitForm() {
-            let hasError = false
-            // checking fullName validation
-            if(this.form.fullName === '' || this.form.fullName.length < 3) {
-                this.error.fullName = 'could not be empty and length would be at least 3'
-                hasError = true
-            }
-            else
-                this.error.fullName = null
-            // checking email validation
-            if(this.form.email === '' || this.form.email.length < 5) {
-                this.error.email = 'invalid email address'
-                hasError = true
-            }
-            else
-                this.error.email = null
-            // checking clearPassword validation
-            if(this.form.clearPassword === '' || this.form.clearPassword.length < 5 ) {
-                this.error.clearPassword = 'could not be empty and length would be at least 5'
-                hasError = true
-            }
-            else
-                this.error.clearPassword = null
-
-            // checking all errors finally
-            if(hasError) {
-                this.$forceUpdate()
-                return 
-            }
-            this.error = {}
-            
+            axios.post(process.env.VUE_APP_API_URL+'/registration', this.form)
+            .then(({data}) => {
+                this.error = {}
+                this.form = {fullName: '', email: '', clearPassword: ''}
+                console.log(data)
+            })
+            .catch(({response}) => {
+                let errors = response.data.errors;
+                if(errors) {
+                    this.error = errorSpliter(errors, ['fullName', 'email', 'clearPassword'])
+                }
+            })
         }
     },
     updated() {
