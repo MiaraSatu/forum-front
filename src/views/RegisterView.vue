@@ -52,10 +52,8 @@ export default {
     methods: {
         submitForm() {
             axios.post(process.env.VUE_APP_API_URL+'/registration', this.form)
-            .then(({data}) => {
-                this.error = {}
-                this.form = {fullName: '', email: '', clearPassword: ''}
-                console.log(data)
+            .then(() => {
+                this.$router.push({name: 'login'})
             })
             .catch(({response}) => {
                 let errors = response.data.errors;
