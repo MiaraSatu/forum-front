@@ -63,9 +63,6 @@ export default {
             })
         }
     },
-    updated() {
-        console.log('update called')
-    }
 }
 </script>
 
