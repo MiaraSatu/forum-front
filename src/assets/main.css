@@ -5,4 +5,8 @@ html, body {
 }
 a {
     text-decoration: none;
+    color: inherit;
+}
+a:active {
+    color: inherit;
 }
