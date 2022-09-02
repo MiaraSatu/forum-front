@@ -1,6 +1,9 @@
 <template>
     <nav>
-        <router-link to="/" class="left-element">Home</router-link>
+        <router-link to="/" class="left-element">
+            <font-awesome-icon icon="fa-solid fa-house" />
+            Home
+        </router-link>
         <div class="right-option">
             <router-link :to="{name: 'login'}" v-if="!isRoute('login')">Sign in</router-link>
             <router-link :to="{name: 'register'}" v-if="!isRoute('register')" >Sign up</router-link>
@@ -21,14 +24,13 @@ export default {
 
 <style lang="scss" scoped>
 nav {
-    font-size: 0.9rem;
     display: flex;
     align-items: center;
     position: absolute;
     top: 0;
     width: 100%;
     height: 3rem;
-    padding: 0 2rem;
+    padding: 0 10%;
     background-color: rgb(201, 201, 201);
     box-sizing: border-box;
     a {

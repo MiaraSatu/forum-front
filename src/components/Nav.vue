@@ -1,17 +1,21 @@
 <template>
     <nav>
-		<router-link :to="{name: 'home'}">
+		<router-link :to="{name: 'home'}" class="nav-link">
 			<font-awesome-icon icon="fa-solid fa-house" />
 			Home
 		</router-link>
-		<div class="user-block" v-if="user">
-			<div>{{user.fullName}}</div>
-			<button @click="logout">Logout</button>
-		</div>
-		<div v-else>
-			<router-link :to="{name: 'login'}">sign in</router-link>
-			or
-			<router-link :to="{name: 'register'}">sign up</router-link>
+		<div class="right-option">
+			<div class="user-block" v-if="user">
+				<div>{{user.fullName}}</div>
+				<button @click="logout">
+					Logout
+					<font-awesome-icon icon="fa-solid fa-right-from-bracket" />
+				</button>
+			</div>
+			<div v-else id="nav-account-option">
+				<router-link :to="{name: 'login'}" class="nav-link">sign in</router-link> |
+				<router-link :to="{name: 'register'}" class="nav-link">sign up</router-link>
+			</div>
 		</div>
 	</nav>
 </template>
@@ -27,6 +31,7 @@ export default {
 	methods: {
 		logout() {
 			this.$store.dispatch('logout')
+			this.$router.push({name: 'login'})
 		}
 	}
 }
@@ -34,16 +39,22 @@ export default {
 
 <style lang="scss" scoped>
 nav {
-	padding-left: 10%;
-	padding-right: 10%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 2rem;
-	background-color: rgb(182, 182, 182);
-	.user-block {
-		display: flex;
-		align-items: center;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 3rem;
+    padding: 0 10%;
+    background-color: rgb(201, 201, 201);
+    box-sizing: border-box;
+	.right-option {
+        margin-left: auto;
+    }
+	.nav-link {
+		&:hover {
+			color: rgb(64, 134, 224);
+		}
 	}
 }
 </style>
