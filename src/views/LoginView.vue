@@ -101,10 +101,10 @@ export default {
             })
         }
     },
-    mounted() {
+    beforeMount() {
         if(this.$store.state.user)
             this.$router.push({name: 'home'})
-    }
+    },
 }
 </script>
 
