@@ -33,6 +33,9 @@ export default {
 			this.$store.dispatch('logout')
 			this.$router.push({name: 'login'})
 		}
+	},
+	mounted() {
+		console.log(this.$store.state.jwt_token)
 	}
 }
 </script>
@@ -41,7 +44,7 @@ export default {
 nav {
     display: flex;
     align-items: center;
-    position: absolute;
+    position: sticky;
     top: 0;
     width: 100%;
     height: 3rem;
