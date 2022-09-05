@@ -1,4 +1,14 @@
 import { createStore } from 'vuex'
+import VuexPersist from 'vuex-persist'
+
+const vuexLocalStorage = new VuexPersist({
+  key: 'vuex',
+  storage: window.sessionStorage,
+  reducer: state => ({
+    user: state.user,
+    jwt_token: state.jwt_token
+  })
+})
 
 export default createStore({
   state: {
@@ -34,4 +44,5 @@ export default createStore({
   },
   modules: {
   },
+  plugins: [vuexLocalStorage.plugin]
 })
