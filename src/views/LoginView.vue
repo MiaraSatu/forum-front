@@ -102,8 +102,10 @@ export default {
         }
     },
     beforeMount() {
-        if(this.$store.state.user)
+        if(this.$store.state.user) {
             this.$router.push({name: 'home'})
+            this.$store.dispatch('addMessageFlash', "you are already logged in", 'error');
+        }
     },
 }
 </script>

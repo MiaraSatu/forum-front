@@ -14,7 +14,8 @@ export default createStore({
   state: {
     user: null,
     jwt_token: null,
-    posts: []
+    posts: [],
+    messageFlash: []
   },
   getters: {
   },
@@ -30,7 +31,13 @@ export default createStore({
     },
     SET_POSTS(state, posts) {
       state.posts = [...posts]
-    }
+    },
+    SET_MESSAGE_FLASH(state, message) {
+      if(message) 
+        state.messageFlash.push({...message})
+      else
+        state.messageFlash.shift()
+    },
   },
   actions: {
     logout(context) {
@@ -40,7 +47,11 @@ export default createStore({
     },
     fetchPost(context, posts) {
       context.commit('SET_POSTS', posts)
-    }
+    },
+    addMessageFlash(context, message, status) {
+      context.commit('SET_MESSAGE_FLASH', {status: status, message: message})
+      setTimeout(() => {context.commit('SET_MESSAGE_FLASH', null)}, 3000)
+    },
   },
   modules: {
   },
