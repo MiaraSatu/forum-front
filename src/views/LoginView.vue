@@ -102,7 +102,6 @@ export default {
         }
     },
     mounted() {
-        console.log('beforeMount called')
         if(this.$store.state.user)
             this.$router.push({name: 'home'})
     }

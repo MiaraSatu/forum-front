@@ -34,9 +34,6 @@ export default {
 			this.$router.push({name: 'login'})
 		}
 	},
-	mounted() {
-		console.log(this.$store.state.jwt_token)
-	}
 }
 </script>
 

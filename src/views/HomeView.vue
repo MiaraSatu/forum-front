@@ -20,17 +20,7 @@ export default {
 		...mapState(['user', 'token'])
 	},
 	beforeMount() {
-		// axios.get(process.env.VUE_APP_API_URL+'/posts', {
-		// 	headers: {
-		// 		Authorization: this.token
-		// 	}
-		// })
-		// .then(({data}) => {
-		// 	console.log(data)
-		// })
-		// .catch((error) => {
-		// 	console.error('error has occured', error)
-		// })
+		console.log('home mounted')
 	}
 }
 </script>
