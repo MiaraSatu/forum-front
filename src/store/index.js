@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
   state: {
@@ -26,11 +27,13 @@ export default createStore({
     logout(context) {
       context.commit('SET_TOKEN', null)
       context.commit('SET_USER', null)
+      sessionStorage.clear()
     },
     fetchPost(context, posts) {
       context.commit('SET_POSTS', posts)
     }
   },
   modules: {
-  }
+  },
+  plugins: [createPersistedState({storage: window.sessionStorage})]
 })
