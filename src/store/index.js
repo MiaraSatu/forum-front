@@ -27,7 +27,7 @@ export default createStore({
         state.user = null
     },
     SET_TOKEN(state, token) {
-      state.token = token
+      state.jwt_token = token
     },
     SET_POSTS(state, posts) {
       state.posts = [...posts]

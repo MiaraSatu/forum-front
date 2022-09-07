@@ -17,10 +17,10 @@ export default {
 	name: 'HomeView',
 	components: {AppNav},
 	computed: {
-		...mapState(['user', 'token'])
+		...mapState(['user', 'jwt_token'])
 	},
-	beforeMount() {
-		console.log('home mounted')
+	mounted() {
+		// console.log(this.user, this.jwt_token)
 	}
 }
 </script>

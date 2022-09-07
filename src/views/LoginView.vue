@@ -93,7 +93,7 @@ export default {
         getUser() {
             axios.get(process.env.VUE_APP_API_URL+'/users/'+this.form.email, {
                 headers: {
-                    'Authorization': this.$store.state.token
+                    'Authorization': this.$store.state.jwt_token
                 }
             })
             .then(({data}) => {
