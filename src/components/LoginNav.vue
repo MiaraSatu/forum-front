@@ -1,9 +1,8 @@
 <template>
     <nav>
-        <router-link to="/" class="left-element">
-            <font-awesome-icon icon="fa-solid fa-house" />
-            Home
-        </router-link>
+        <div class="app_name">
+            My forum
+        </div>
         <div class="right-option">
             <router-link :to="{name: 'login'}" v-if="!isRoute('login')">Sign in</router-link>
             <router-link :to="{name: 'register'}" v-if="!isRoute('register')" >Sign up</router-link>

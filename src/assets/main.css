@@ -10,6 +10,11 @@ a {
 a:active {
     color: inherit;
 }
+/* the app name (actually: My forum) */
+.app_name {
+    color: rgb(109, 12, 173);
+    font-size: 1.2rem;
+}
 #login-load-icon, #register-load-icon {
     margin-right: 3px;
     font-size: 1.2rem;
