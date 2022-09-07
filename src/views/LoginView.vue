@@ -83,7 +83,6 @@ export default {
             .then(() => {
                 // fetching user
                 this.getUser()
-                this.$router.push({name: 'home'})
             })
             .catch(({response}) => {
                 this.loginLoad = false
@@ -99,6 +98,7 @@ export default {
             .then(({data}) => {
                 // returned value would be a user
                 this.$store.commit('SET_USER', data)
+                this.$router.push({name: 'home'})
             })
             .catch(() => {
                 this.$store.dispatch('logout')
