@@ -10,7 +10,7 @@ a {
 a:active {
     color: inherit;
 }
-#login-load-icon {
+#login-load-icon, #register-load-icon {
     margin-right: 3px;
     font-size: 1.2rem;
 }

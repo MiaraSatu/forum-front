@@ -23,7 +23,10 @@
                         {{error.clearPassword}}
                     </div>
                 </div>
-                <button type="submit">Sign up</button>
+                <button type="submit">
+                    <font-awesome-icon v-show="registerLoad" icon="fa-solid fa-circle-notch" class="icon-loading" id="register-load-icon" />
+                    Sign up
+                </button>
             </form>
         </div>
     </div>
@@ -43,7 +46,8 @@ export default {
                 email: '',
                 clearPassword: ''
             },
-            error: {}
+            error: {},
+            registerLoad: false
         }
     },
     components: {
@@ -51,11 +55,13 @@ export default {
     },
     methods: {
         submitForm() {
+            this.registerLoad = true
             axios.post(process.env.VUE_APP_API_URL+'/registration', this.form)
             .then(() => {
                 this.$router.push({name: 'login'})
             })
             .catch(({response}) => {
+                this.registerLoad = false
                 let errors = response.data.errors;
                 if(errors) {
                     this.error = splitError(errors, ['fullName', 'email', 'clearPassword'])
