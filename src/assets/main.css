@@ -10,3 +10,21 @@ a {
 a:active {
     color: inherit;
 }
+#login-load-icon {
+    margin-right: 3px;
+    font-size: 1.2rem;
+}
+.icon-loading {
+    animation-name: icon_loading;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes icon_loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

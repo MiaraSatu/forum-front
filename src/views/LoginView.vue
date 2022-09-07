@@ -14,7 +14,10 @@
                     <input type="password" placeholder="Your password" v-model="form.clearPassword">
                     <div class="error" v-if="error.clearPassword">{{error.clearPassword}}</div>
                 </div>
-                <button type="submit">Sign In</button>
+                <button type="submit" id="submit-login" :disabled="loginLoad">
+                    <font-awesome-icon v-show="loginLoad" icon="fa-solid fa-circle-notch" class="icon-loading" id="login-load-icon" />
+                    Sign In
+                </button>
             </form>
         </div>
     </div>
@@ -33,7 +36,8 @@ export default {
                 clearPassword: ''
             },
             error: {},
-            errorMessage: null
+            errorMessage: null,
+            loginLoad: false
         }
     },
     components: {
@@ -62,6 +66,7 @@ export default {
             }
 
             // sending request when no error
+            this.loginLoad = true
             this.login()
         },
         login() {
@@ -81,6 +86,7 @@ export default {
                 this.$router.push({name: 'home'})
             })
             .catch(({response}) => {
+                this.loginLoad = false
                 this.errorMessage = response.data.message
             })
         },
@@ -97,7 +103,6 @@ export default {
             .catch(() => {
                 this.$store.dispatch('logout')
                 this.$router.push({name: 'login'})
-                console.log(this.$store.state.token, this.$store.state.user)
             })
         }
     },

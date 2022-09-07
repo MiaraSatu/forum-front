@@ -14,11 +14,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { 
     faUserSecret,
     faHouse,
-    faRightFromBracket
+    faRightFromBracket,
+    faCircleNotch
 } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret, faHouse, faRightFromBracket)
+library.add(faUserSecret, faHouse, faRightFromBracket, faCircleNotch)
 
 createApp(App)
 .use(store)
