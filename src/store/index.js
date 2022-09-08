@@ -33,8 +33,10 @@ export default createStore({
       state.posts = [...posts]
     },
     SET_MESSAGE_FLASH(state, message) {
-      if(message) 
+      if(message) {
         state.messageFlash.push({...message})
+        console.log(state.messageFlash)
+      }
       else
         state.messageFlash.shift()
     },
@@ -48,9 +50,9 @@ export default createStore({
     fetchPost(context, posts) {
       context.commit('SET_POSTS', posts)
     },
-    addMessageFlash(context, message, status) {
-      context.commit('SET_MESSAGE_FLASH', {status: status, message: message})
-      setTimeout(() => {context.commit('SET_MESSAGE_FLASH', null)}, 3000)
+    addMessageFlash(context, message) {
+      context.commit('SET_MESSAGE_FLASH', message)
+      setTimeout(() => {context.commit('SET_MESSAGE_FLASH', null)}, 10000)
     },
   },
   modules: {

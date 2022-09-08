@@ -20,7 +20,11 @@ export default {
 		...mapState(['user', 'jwt_token'])
 	},
 	mounted() {
-		// console.log(this.user, this.jwt_token)
+		// anonymous impossible
+		if(this.user === null){
+			this.$router.push({name: 'login'})
+			this.$store.dispatch('addMessageFlash', {message: "You should be logged with an account", status: 'error'})
+		}
 	}
 }
 </script>

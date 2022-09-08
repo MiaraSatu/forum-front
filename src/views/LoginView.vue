@@ -98,7 +98,11 @@ export default {
             .then(({data}) => {
                 // returned value would be a user
                 this.$store.commit('SET_USER', data)
+                
+            })
+            .then(() => {
                 this.$router.push({name: 'home'})
+                this.$store.dispatch('addMessageFlash', {message: "Login successfully", status: 'success'})
             })
             .catch(() => {
                 this.$store.dispatch('logout')
@@ -109,7 +113,7 @@ export default {
     beforeMount() {
         if(this.$store.state.user) {
             this.$router.push({name: 'home'})
-            this.$store.dispatch('addMessageFlash', "you are already logged in", 'error');
+            this.$store.dispatch('addMessageFlash', {message: "you are already logged in", status:'error'})
         }
     },
 }
