@@ -7,11 +7,11 @@
                     {{ post.postedBy.fullName }}
                 </span>
             </div>
+            <div class="createdAt">
+                {{ format(createdAt) }}
+            </div>
             <div class="title">
                 {{ post.title }}
-            </div>
-            <div>
-                {{ createdAt }}
             </div>
         </div>
         <div class="content">
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { format } from 'date-fns'
+
 export default {
     name: 'AppPost',
     props: ['post'],
@@ -31,6 +33,11 @@ export default {
         createdAt() {
             let date = new Date(this.post.createdAt.timestamp * 1000)
             return date
+        }
+    },
+    methods: {
+        format(date) {
+            return format(new Date(date), "HH:mm eee dd MMM Y")
         }
     }
 }
@@ -45,7 +52,6 @@ export default {
 
     .head {
         .poster {
-            border-bottom: 1px solid rgb(165, 165, 165);
             display: flex;
             align-items: center;
             padding-bottom: 0.2rem;
@@ -55,6 +61,11 @@ export default {
             margin-top: 0.3rem;
             font-size: 0.8rem;
             color: rgb(68, 68, 68);
+        }
+        .createdAt{
+            font-size: 0.8rem;
+            color: #555555;
+            border-bottom: 1px solid rgb(165, 165, 165);
         }
     }
     .content {
