@@ -32,6 +32,9 @@ export default createStore({
     SET_POSTS(state, posts) {
       state.posts = [...posts]
     },
+    // SET_POST(state, post) {
+    //   state.posts.push()
+    // },
     SET_MESSAGE_FLASH(state, message) {
       if(message) {
         state.messageFlash.push({...message})
@@ -47,13 +50,16 @@ export default createStore({
       context.commit('SET_USER', null)
       sessionStorage.clear()
     },
-    fetchPost(context, posts) {
+    fetchPosts(context, posts) {
       context.commit('SET_POSTS', posts)
     },
     addMessageFlash(context, message) {
       context.commit('SET_MESSAGE_FLASH', message)
       setTimeout(() => {context.commit('SET_MESSAGE_FLASH', null)}, 10000)
     },
+    // addPost(context, post) {
+    //   context.commit('')
+    // }
   },
   modules: {
   },

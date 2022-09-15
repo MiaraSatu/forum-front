@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss">
 #message-flash-box {
-	position: absolute;
+	position: fixed;
 	bottom: 30px;
 	right: 15px;
 	color: white;
@@ -74,5 +74,9 @@ export default {
     100% {
         opacity: 0%;
     }
+}
+.super-container {
+	width: 80%;
+	margin: 0 auto;
 }
 </style>

@@ -5,16 +5,19 @@
 			Home
 		</router-link>
 		<div class="right-option">
-			<div class="user-block" v-if="user">
-				<div>{{user.fullName}}</div>
+			<div v-if="user" id="user-block">
+				<div id="profil">
+					<img src="@/assets/avataaars.png" alt="" id="profil-pic">
+					{{user.fullName}}
+				</div>
 				<button @click="logout">
 					Logout
-					<font-awesome-icon icon="fa-solid fa-right-from-bracket" />
+					<font-awesome-icon icon="fa-solid fa-power-off" />
 				</button>
 			</div>
-			<div v-else id="nav-account-option">
-				<router-link :to="{name: 'login'}" class="nav-link">sign in</router-link> |
-				<router-link :to="{name: 'register'}" class="nav-link">sign up</router-link>
+			<div v-else>
+				<router-link :to="{name: 'login'}">login</router-link> or
+				<router-link :to="{name: 'register'}">create account</router-link>
 			</div>
 		</div>
 	</nav>
@@ -48,8 +51,24 @@ nav {
     padding: 0 10%;
     background-color: rgb(201, 201, 201);
     box-sizing: border-box;
+
 	.right-option {
         margin-left: auto;
+
+		#user-block {
+			display: flex;
+			align-items: center;
+
+			#profil {
+				display: flex;
+				align-items: center;
+
+				#profil-pic {
+					width: 30px;
+					height: 30px;
+				}
+			}
+		}
     }
 	.nav-link {
 		&:hover {
