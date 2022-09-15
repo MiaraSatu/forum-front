@@ -15,11 +15,15 @@ import {
     faUserSecret,
     faHouse,
     faCircleNotch,
-    faPowerOff
+    faPowerOff,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+    faThumbsUp,
+    faComment
+} from '@fortawesome/free-regular-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret, faHouse, faCircleNotch, faPowerOff)
+library.add(faUserSecret, faHouse, faCircleNotch, faPowerOff, faThumbsUp, faComment)
 
 createApp(App)
 .use(store)

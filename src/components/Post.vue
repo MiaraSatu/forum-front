@@ -18,7 +18,14 @@
             {{ post.content }}
         </div>
         <div class="foot">
-
+            <button class="like">
+                {{ likeNumber }}
+                <font-awesome-icon icon="fa-regular fa-thumbs-up" />
+            </button>
+            <button class="comment">
+                {{ commentNumber }}
+                <font-awesome-icon icon="fa-regular fa-comment" />
+            </button>
         </div>
     </div>
 </template>
@@ -33,6 +40,12 @@ export default {
         createdAt() {
             let date = new Date(this.post.createdAt.timestamp * 1000)
             return date
+        },
+        likeNumber() {
+            return Math.floor(Math.random() * 100) + 20
+        },
+        commentNumber() {
+            return Math.floor(Math.random() * 75) + 20
         }
     },
     methods: {
@@ -70,9 +83,25 @@ export default {
     }
     .content {
         padding: 0.7rem 0;
+        border-bottom: 1px solid rgb(165, 165, 165);
     }
     .foot {
-
+        margin-top: 1rem;
+        & > button {
+            padding: 0.2rem 0.5rem;
+            border: 1px solid #045dd9;
+            border-radius: 2px;
+            background-color: #fff;
+            color: #045dd9;
+            &.like {
+                margin-right: 0.5rem;
+                &.liked {
+                    border: none;
+                    background-color: #045dd9;
+                    color: #fff;
+                }
+            }
+        }
     }
 }
 </style>
