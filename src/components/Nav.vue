@@ -1,9 +1,16 @@
 <template>
     <nav>
-		<router-link :to="{name: 'home'}" class="nav-link">
-			<font-awesome-icon icon="fa-solid fa-house" />
-			Home
-		</router-link>
+		<div class="options">
+			<router-link :to="{name: 'home'}" class="nav-link">
+				<font-awesome-icon icon="fa-solid fa-house" />
+				Home
+			</router-link>
+			<router-link :to="{name: 'post_new'}" class="nav-link">
+				<font-awesome-icon icon="fa-solid fa-file-pen" />
+				New post
+			</router-link>
+
+		</div>
 		<div class="right-option">
 			<div v-if="user" id="user-block">
 				<div id="profil" @click="displayDropdown">
@@ -71,8 +78,9 @@ nav {
     width: 100%;
     height: 3rem;
     padding: 0 10%;
-    background-color: rgb(201, 201, 201);
+    background-color: rgb(46, 46, 46);
     box-sizing: border-box;
+	color: rgb(146, 146, 146);
 
 	.right-option {
         margin-left: auto;
@@ -117,8 +125,12 @@ nav {
 		}
     }
 	.nav-link {
+		margin-right: 1rem;
 		&:hover {
 			color: rgb(64, 134, 224);
+		}
+		&.router-link-exact-active {
+			color: rgb(235, 235, 235);
 		}
 	}
 }
